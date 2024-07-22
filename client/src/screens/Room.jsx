@@ -2,16 +2,18 @@ import React, { useEffect, useCallback, useState } from "react";
 import ReactPlayer from "react-player";
 import peer from "../service/peer";
 import { useSocket } from "../context/SocketProvider";
+import "../App.css"
 
 const RoomPage = () => {
   const socket = useSocket();
   const [remoteSocketId, setRemoteSocketId] = useState(null);
   const [myStream, setMyStream] = useState();
   const [remoteStream, setRemoteStream] = useState();
-
+let e;
   const handleUserJoined = useCallback(({ email, id }) => {
     console.log(`Email ${email} joined room`);
     setRemoteSocketId(id);
+    e=email;
   }, []);
 
   const handleCallUser = useCallback(async () => {
@@ -109,36 +111,68 @@ const RoomPage = () => {
     handleNegoNeedFinal,
   ]);
 
+  console.log("The other user is ", e);
+
   return (
-    <div>
+    <div >
+    <div className="all">
       <h1>Room Page</h1>
       <h4>{remoteSocketId ? "Connected" : "No one in room"}</h4>
-      {myStream && <button onClick={sendStreams}>Send Stream</button>}
-      {remoteSocketId && <button onClick={handleCallUser}>CALL</button>}
-      {myStream && (
-        <>
-          <h1>My Stream</h1>
+    
+      {myStream && <button onClick={sendStreams} style={{margin:"2rem",backgroundColor:"yellow",color:"black",padding:"1.2rem",borderRadius:"25%"}}>Send Stream (Initiate The Call)</button>}
+      {remoteSocketId && <button onClick={handleCallUser} style={{margin:"2rem",backgroundColor:"lightgreen",color:"white",padding:"1.2rem",borderRadius:"25%"}}>CALL</button>}
+      </div>
+      <div className="remote">
+  
+      {remoteStream && (
+          <div>
+          <h1>Remote Stream : {e}</h1>
+          <div className="bg">
           <ReactPlayer
             playing
             muted
             height="300px"
-            width="700px"
-            url={myStream}
-          />
-        </>
+            width="800px"
+            url={remoteStream}
+            />
+          </div>
+     </div>
       )}
-      {remoteStream && (
-        <>
-          <h1>Remote Stream</h1>
+      </div>
+
+
+<div className="my">
+          {myStream && (
+        <div>
+
+          <h1>My Stream</h1>
           <ReactPlayer
             playing
             muted
-            height="100px"
-            width="200px"
-            url={remoteStream}
+            height="200px"
+            width="300px"
+            url={myStream}
           />
-        </>
+        </div>
       )}
+
+    </div>
+    <div style={{
+      display:"flex",
+      justifyContent:"center"
+    }}>
+      <button
+       style={{
+        color:"white",
+        backgroundColor:"red",
+        padding:"1.6rem",
+        borderRadius:"40%"
+      }}>
+        
+  END THE CALL
+        
+        </button>
+    </div>
     </div>
   );
 };
