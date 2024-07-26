@@ -1,10 +1,9 @@
 import React from 'react';
-import Im from './107.jpg';
+// import Im from './107.jpg';
 import { useState } from 'react';
-import './App.css';
+import '../../App.css';
 import { NavLink } from 'react-router-dom';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import Contact from './Contact';
 function Navbar() {
   const [show, setshow] = useState(false);
   const shownav = () => {
@@ -15,11 +14,11 @@ function Navbar() {
       <div className="flex justify-between h-11 bg-black text-yellow-50 items-center">
         <div className="flex justify-center space-x-4">
           <div className="pl-4">
-            <img src={Im} width="30px" />
+            {/* <img src={Im} width="30px" /> */}
           </div>
           <div className="text-yellow-500 font-bold">
             <h1>
-              <strong>ART STORE</strong>
+              <strong>REAL ZOOM MEET</strong>
             </h1>
           </div>
         </div>
@@ -68,7 +67,7 @@ function Navbar() {
       >
         <div>
           <NavLink
-            to="/Home"
+            to="/"
             className={({ isActive }) => (isActive ? 'active-link' : '')}
           >
             Home
@@ -76,7 +75,7 @@ function Navbar() {
         </div>
         <div>
           <NavLink
-            to="/Paint"
+            to="/"
             className={({ isActive }) => (isActive ? 'active-link' : '')}
           >
             Painting
@@ -85,7 +84,7 @@ function Navbar() {
 
         <div className="pr-4">
           <NavLink
-            to="/Contact"
+            to="/"
             className={({ isActive }) => (isActive ? 'active-link' : '')}
           >
             Contact{' '}

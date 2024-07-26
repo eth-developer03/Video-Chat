@@ -16,17 +16,12 @@
 
   justify-content: flex-end;
 }
-/* .my div {
-  margin-left: 30rem;
-} */
+
 /* Navbar css  */
 .hiddenv {
-  /* overflow: hidden; */
-  /* transform: translateX(-500px); */
   display: none;
 }
 .dispnav {
-  /* transform: translateX(550px); */
   display: block;
 }
 .hin {

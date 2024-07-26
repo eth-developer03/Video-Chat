@@ -1,7 +1,8 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSocket } from "../context/SocketProvider";
-
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer"
 const LobbyScreen = () => {
   const [email, setEmail] = useState("");
   const [room, setRoom] = useState("");
@@ -33,6 +34,8 @@ const LobbyScreen = () => {
   }, [socket, handleJoinRoom]);
 
   return (
+    < div className="h-screen">
+    <Navbar />
     <div>
       <h1>Lobby</h1>
       <form onSubmit={handleSubmitForm}>
@@ -54,6 +57,8 @@ const LobbyScreen = () => {
         <br />
         <button>Join</button>
       </form>
+    </div>
+    <Footer/>
     </div>
   );
 };
