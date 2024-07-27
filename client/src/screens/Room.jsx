@@ -3,7 +3,8 @@ import ReactPlayer from "react-player";
 import peer from "../service/peer";
 import { useSocket } from "../context/SocketProvider";
 import "../App.css"
-
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer"
 const RoomPage = () => {
   const socket = useSocket();
   const [remoteSocketId, setRemoteSocketId] = useState(null);
@@ -115,6 +116,7 @@ let e;
 
   return (
     <div >
+      <Navbar/>
     <div className="all">
       <h1>Room Page</h1>
       <h4>{remoteSocketId ? "Connected" : "No one in room"}</h4>
@@ -173,6 +175,7 @@ let e;
         
         </button>
     </div>
+    <Footer/>
     </div>
   );
 };
